@@ -1,19 +1,17 @@
+import { getByPinyin } from 'mdbg'
+import { useState } from 'react'
 import './App.css'
-import logo from './logo.svg'
+import { TextInput } from './components/TextInput/TextInput'
+import { TranslateDetail } from './components/TranslateDetails/TranslateDetails'
 
 function App() {
+  const [textToTranslate, setTextToTranslate] = useState<string>('wo3')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <TextInput callback={(text: string) => setTextToTranslate(text)} defaultValue={null} typeOfInput={undefined} />
+      <br />
+      <TranslateDetail objectOfTranslate={getByPinyin(textToTranslate)} />
+    </>
   )
 }
 
